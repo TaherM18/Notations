@@ -169,6 +169,7 @@ const Navigation = () => {
                         <p key={document._id}>{document.title}</p>
                     ))}
                 </div>
+                {/* Sidebar */}
                 <div
                     onMouseDown={handleMouseDown}
                     onClick={resetWidth}
