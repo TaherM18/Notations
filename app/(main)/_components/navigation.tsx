@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
+import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
@@ -139,7 +139,7 @@ const Navigation = () => {
                         isMobile && "opacity-100"
                     )}
                 >
-                    <ChevronsLeft></ChevronsLeft>
+                    <ChevronsLeft />
                 </div>
                 {/* Action Items */}
                 <div>
@@ -164,6 +164,11 @@ const Navigation = () => {
                 {/* Documents */}
                 <div className="mt-4">
                     <DocumentList />
+                    <Item 
+                        onClick={handleCreate}
+                        icon={Plus}
+                        label="Add a page" 
+                    />
                 </div>
                 {/* Sidebar */}
                 <div
