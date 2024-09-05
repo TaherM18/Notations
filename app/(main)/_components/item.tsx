@@ -103,7 +103,7 @@ const Item = ({
                     className="h-full rounded-sm hover:bg-neutral-300 dark:bg-neutral-600 mr-1"
                     onClick={handleExpand}
                 >
-                    <ChevronIcon className="h-5 w-5 shrink-0 text-muted-foreground/50" />
+                    <ChevronIcon className="h-4 w-4 shrink-0 text-muted-foreground/50" />
                 </div>
             )}
             { documentIcon ? (
