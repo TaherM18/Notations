@@ -31,9 +31,10 @@ const Item = ({
     documentIcon,
     isSearch,
     level = 0,
-    expanded,
     onExpand,
+    expanded,
 }: ItemProps) => {
+    const ChevronIcon = expanded ? ChevronDown : ChevronRight;
     const router = useRouter();
     const create = useMutation(api.documents.create);
 
@@ -53,7 +54,7 @@ const Item = ({
             if (!expanded) {
                 onExpand?.();
             }
-            router.push(`/documents/${documentId}`)
+            // router.push(`/documents/${documentId}`)
         });
 
         toast.promise(promise, {
@@ -62,8 +63,6 @@ const Item = ({
             error: "Failed to create a new note."
         });
     }
-
-    const ChevronIcon = expanded ? ChevronDown : ChevronRight;
 
     return (
         <div
@@ -101,6 +100,7 @@ const Item = ({
                     <span className="text-xs">Ctrl</span>K
                 </kbd>
             )}
+            {/* Plus Button */}
             {!!id && (
                 <div className="ml-auto flex items-center gap-x-2">
                     <div

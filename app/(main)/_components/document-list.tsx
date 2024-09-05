@@ -15,7 +15,10 @@ interface DocumentListProps {
     data?: Doc<"documents">[]
 }
 
-const DocumentList = ( {parentDocumentId, level=0}: DocumentListProps ) => {
+const DocumentList = ({
+    parentDocumentId,
+    level=0
+}: DocumentListProps) => {
     const params = useParams();
     const router = useRouter();
     const [expanded, setExpanded] = useState<Record<string, boolean>>({});
@@ -24,8 +27,8 @@ const DocumentList = ( {parentDocumentId, level=0}: DocumentListProps ) => {
         setExpanded(prevExpanded => ({
             ...prevExpanded,
             [documentId]: !prevExpanded[documentId]
-        }))
-    }
+        }));
+    };
 
     const documents = useQuery(api.documents.getSidebar, {
         parentDocument: parentDocumentId
@@ -33,24 +36,28 @@ const DocumentList = ( {parentDocumentId, level=0}: DocumentListProps ) => {
 
     const onRedirect = (documentId: string) => {
         router.push(`/documents/${documentId}`)
-    }
+    };
 
     if (documents === undefined) {
-        <>
-            <Item.Skeleton level={level}/>
-            {level === 0 && (
-                <>
-                    <Item.Skeleton level={level}/>
-                    <Item.Skeleton level={level}/>
-                </>
-            )}
-        </>
+        return (
+            <>
+                <Item.Skeleton level={level}/>
+                {level === 0 && (
+                    <>
+                        <Item.Skeleton level={level}/>
+                        <Item.Skeleton level={level}/>
+                    </>
+                )}
+            </>
+        )
     }
 
     return (
         <>
             <p
-                style={{paddingLeft: level ? `${(level * 12)  + 25}px` : undefined}}
+                style={{
+                    paddingLeft: level ? `${(level * 12)  + 25}px` : undefined
+                }}
                 className={cn(
                     "hidden text-sm font-medium text-muted-foreground/80",
                     expanded && "last:block",
@@ -59,17 +66,17 @@ const DocumentList = ( {parentDocumentId, level=0}: DocumentListProps ) => {
             >
                 No pages inside
             </p>
-            {documents?.map((document) => {
+            {documents?.map((document) => (
                 <div key={document._id}>
                     <Item 
                         id={document._id}
-                        onClick={() => { onRedirect(document._id) }}
+                        onClick={() => onRedirect(document._id)}
                         label={document.title}
                         icon={FileIcon}
                         documentIcon={document.icon}
                         active={params.documentId === document._id}
                         level={level}
-                        onExpand={()=>{onExpand(document._id)}}
+                        onExpand={() => onExpand(document._id)}
                         expanded={expanded[document._id]}
                     />
                     {expanded[document._id] && (
@@ -79,9 +86,9 @@ const DocumentList = ( {parentDocumentId, level=0}: DocumentListProps ) => {
                         />
                     )}
                 </div>
-            })}
+            ))}
         </>
     );
-}
+};
  
 export default DocumentList;
