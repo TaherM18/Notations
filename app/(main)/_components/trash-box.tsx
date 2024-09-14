@@ -32,7 +32,7 @@ const TrashBox = () => {
         documentId: Id<"documents">,
     ) => {
         event.stopPropagation();
-        const promise = restore({id: documentId});
+        const promise = restore({ id: documentId });
 
         toast.promise(promise, {
             loading: "Restoring note...",
@@ -44,7 +44,7 @@ const TrashBox = () => {
     const onRemove = (
         documentId: Id<"documents">,
     ) => {
-        const promise = remove({id: documentId});
+        const promise = remove({ id: documentId });
 
         toast.promise(promise, {
             loading: "Deleting note...",
@@ -94,7 +94,7 @@ const TrashBox = () => {
                             <div 
                                 role="button"
                                 onClick={(e) => onRestore(e, document._id)}
-                                className="rounded-sm p-2 hover:bg-neutral-300"
+                                className="rounded-sm p-2 hover:bg-neutral-200"
                             >
                                 <Undo className="h-4 w-4 text-muted-foreground" />
                             </div>

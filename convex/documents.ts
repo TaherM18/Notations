@@ -118,12 +118,12 @@ export const getTrash = query({
         const userId =  identity.subject;
 
         const documents = ctx.db.query("documents")
-        .withIndex("by_user", (q) => q.eq("userId", userId))
-        .filter((q) => 
-            q.eq(q.field("isArchived"), true)
-        )
-        .order("desc")
-        .collect();
+            .withIndex("by_user", (q) => q.eq("userId", userId))
+            .filter((q) =>
+                q.eq(q.field("isArchived"), true)
+            )
+            .order("desc")
+            .collect();
 
         return documents;
     }
@@ -146,7 +146,7 @@ export const restore = mutation({
             throw new Error("Not Found");
         }
 
-        if (existingDocument._id !== userId) {
+        if (existingDocument.userId !== userId) {
             throw new Error("Unauthorized");
         }
 
@@ -161,9 +161,9 @@ export const restore = mutation({
 
             for (const child of children) {
                 await ctx.db.patch(child._id, {
-                    "isArchived": false
+                    "isArchived": false,
                 });
-                recursiveRestore(child._id);
+                await recursiveRestore(child._id);
             }
         }
 
