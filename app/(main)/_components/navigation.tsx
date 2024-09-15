@@ -8,7 +8,7 @@ import {
     Settings,
     Trash
 } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import {
     ElementRef,
     useEffect,
@@ -38,6 +38,7 @@ import { useSettings } from "@/hooks/use-settings";
 const Navigation = () => {
     const search = useSearch();
     const settings = useSettings();
+    const params = useParams();
     const pathname = usePathname();
     const isMobile = useMediaQuery("(max-width: 768px)");
     const create = useMutation(api.documents.create);
@@ -219,7 +220,7 @@ const Navigation = () => {
             <div
                 ref={navbarRef}
                 className={cn(
-                    "absolute top-0 z-[99999}] left-60 w-[cal(100% - 240px)]",
+                    "absolute top-0 z-[99999}] left-60 w-[calc(100% - 240px)]",
                     isResetting && "transition ease-in-out duration-300",
                     isMobile && "left-0 w-full"
                 )}
