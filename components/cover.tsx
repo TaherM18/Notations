@@ -2,10 +2,14 @@
 
 import Image from "next/image";
 import { ImageIcon, X } from "lucide-react";
+import { useMutation } from "convex/react";
+import { useParams } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useCoverImage } from "@/hooks/use-cover-image";
+import { api } from "@/convex/_generated/api";
+import { Id } from "@/convex/_generated/dataModel";
 
 interface CoverImageProps {
     url?: string;
@@ -16,7 +20,15 @@ const Cover = ({
     url,
     preview
 }: CoverImageProps) => {
+    const params = useParams();
     const coverImage = useCoverImage();
+    const removeCoverImage = useMutation(api.documents.removeCoverImage);
+
+    const onRemove = () => {
+        removeCoverImage({
+            id: params.documentId as Id<"documents">
+        });
+    }
 
     return (
         <div className={cn(
@@ -44,7 +56,7 @@ const Cover = ({
                         Change Cover
                     </Button>
                     <Button
-                        onClick={() => {}}
+                        onClick={onRemove}
                         className="text-muted-foreground text-xs"
                         variant="outline"
                         size="sm"
