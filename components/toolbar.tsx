@@ -75,6 +75,7 @@ const Toolbar = ({
     }
 
     return (
+        // needs padding on right
         <div className="pl-[54px] group relative">
             {!!initialData.icon && !preview && (
                 <div className="flex items-center gap-x-2 group/icon pt-6">
