@@ -37,23 +37,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ConvexClientProvider>
-            <EdgeStoreProvider>
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-                    storageKey="notations-theme"
-                >
-                    <Toaster position="bottom-center"/>
-                    <ModalProvider />
-                    {children}
-                </ThemeProvider>
-            </EdgeStoreProvider>
-        </ConvexClientProvider>
-      </body>
+        <body className={inter.className}>
+            <ConvexClientProvider>
+                <EdgeStoreProvider>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                        disableTransitionOnChange
+                        storageKey="notations-theme"
+                    >
+                        <Toaster position="bottom-center"/>
+                        <ModalProvider />
+                        {children}
+                    </ThemeProvider>
+                </EdgeStoreProvider>
+            </ConvexClientProvider>
+        </body>
     </html>
   );
 }

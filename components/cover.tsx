@@ -69,7 +69,7 @@ const Cover = ({
                         variant="outline"
                         size="sm"
                     >
-                        <X className="h-4 w-4 mr-2"/>
+                        <X className="h-4 w-4 mr-2" />
                         Remove
                     </Button>
                 </div>

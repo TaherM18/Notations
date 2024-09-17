@@ -113,7 +113,7 @@ const Toolbar = ({
                 )}
                 {!initialData.coverImage && !preview && (
                     <Button
-                    onClick={coverImage.onOpen}
+                        onClick={coverImage.onOpen}
                         className="text-muted-foreground text-xs"
                         variant="outline"
                         size="sm"

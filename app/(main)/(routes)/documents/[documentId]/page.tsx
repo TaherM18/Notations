@@ -4,9 +4,9 @@ import { useQuery } from "convex/react";
 
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
+import { Skeleton } from "@/components/ui/skeleton";
 import Toolbar from "@/components/toolbar";
 import Cover from "@/components/cover";
-import { Skeleton } from "@/components/ui/skeleton";
 
 interface DocumentIdPageProps {
     params: {
