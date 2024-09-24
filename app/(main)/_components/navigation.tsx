@@ -8,7 +8,7 @@ import {
     Settings,
     Trash
 } from "lucide-react";
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import {
     ElementRef,
     useEffect,
@@ -18,24 +18,23 @@ import {
 from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { useMutation } from "convex/react";
+import { toast } from "sonner";
+import UserItem from "./user-item";
+import Item from "./item";
+import TrashBox from "./trash-box";
+import Navbar from "./navbar";
 
 import { cn } from "@/lib/utils";
 import { api } from "@/convex/_generated/api";
-import { toast } from "sonner";
 import {
     Popover,
     PopoverTrigger,
     PopoverContent,
 } from "@/components/ui/popover";
 
-import UserItem from "./user-item";
-import Item from "./item";
 import DocumentList from "./document-list";
-import TrashBox from "./trash-box";
 import { useSearch } from "@/hooks/use-search";
 import { useSettings } from "@/hooks/use-settings";
-import Navbar from "./navbar";
-import { useRouter } from "next/router";
 
 const Navigation = () => {
 
@@ -143,7 +142,8 @@ const Navigation = () => {
 
     const handleCreate = () => {
         const promise = create({ title: "Untitled" })
-        .then((documentId) => router.push(`/documents/${documentId}`));
+            .then((documentId) => router.push(`/documents/${documentId}`));
+
         toast.promise(promise, {
             loading: "Creating a new note...",
             success: "New note created!",

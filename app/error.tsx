@@ -8,14 +8,14 @@ const Error = () => {
     return (
         <div className="h-full flex flex-col items-center justify-center space-y-4">
             <Image
-                src={"error.png"}
+                src="/error.png"
                 height="300"
                 width="300"
                 alt="error-light"
                 className="dark:hidden"
             />
             <Image
-                src={"error-dark.png"}
+                src="/error-dark.png"
                 height="300"
                 width="300"
                 alt="error-dark"
