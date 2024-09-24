@@ -42,6 +42,7 @@ const Item = ({
     onExpand,
     expanded,
 }: ItemProps) => {
+
     const { user } = useUser();
     const ChevronIcon = expanded ? ChevronDown : ChevronRight;
     const router = useRouter();
@@ -53,7 +54,8 @@ const Item = ({
         if (!id) {
             return;
         }
-        const promise = archive({id});
+        const promise = archive({id})
+            .then(() => router.push("/documents"));
         toast.promise(promise, {
             loading: "Moving to trash...",
             success: "Note moved to trash!",
@@ -77,7 +79,7 @@ const Item = ({
             if (!expanded) {
                 onExpand?.();
             }
-            // router.push(`/documents/${documentId}`)
+            router.push(`/documents/${documentId}`)
         });
 
         toast.promise(promise, {
@@ -112,7 +114,7 @@ const Item = ({
                 </div>
             ) : (
                 <Icon
-                    className="shrink-0 h-[18px] mr-2 text-muted-foreground" 
+                    className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground"
                 />
             )}
             <span className="truncate">
